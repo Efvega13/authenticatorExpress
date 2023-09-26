@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { validateTaskData } = require("./list-edit-middleware"); 
+const { validateTaskData } = require("./list-edit-middleware");
 
 const tasks = [
   {
@@ -11,7 +11,7 @@ const tasks = [
   {
     id: "2",
     isCompleted: true,
-    description: "crear una aplicación",
+    description: "crear una aplicacion",
   },
 ];
 
@@ -28,7 +28,7 @@ router.delete("/delete/:id", (req, res) => {
     const deletedTask = tasks.splice(index, 1);
     res.json(deletedTask);
   } else {
-    res.status(404).json({ message: "Tarea no encontrada" });
+    res.status(404).json({ message: "Task not found" });
   }
 });
 
@@ -40,7 +40,7 @@ router.put("/update/:id", validateTaskData, (req, res) => {
     tasks[index] = { ...tasks[index], ...updatedTaskData };
     res.json(tasks[index]);
   } else {
-    res.status(404).json({ message: "Tarea no encontrada" });
+    res.status(404).json({ message: "Task not found" });
   }
 });
 

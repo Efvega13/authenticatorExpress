@@ -18,9 +18,9 @@ app.use("/list-edit", listEditRouter);
 app.use("/login", authRouter);
 
 app.get("/ruta-protegida", authenticateToken, (req, res) => {
-  res.json({ message: "Ruta protegida accedida correctamente", user: req.user });
+  res.json({ message: "Protected route accessed successfully", user: req.user });
 });
 
 app.listen(port, () => {
-  console.log(`Servidor Express en funcionamiento en el puerto ${port}`);
+  console.log(`Express server running at the port ${port}`);
 });

@@ -1,17 +1,18 @@
-function valideTask(req, res, next) {
-    const task = req.body;
+function validateTaskData(req, res, next) {
+    const tarea = req.body;
   
-    if (!task) {
-      return res.status(400).json({ error: "El cuerpo de la solicitud está vacío." });
+    if (!tarea) {
+      return res.status(400).json({ error: "The request body is empty." });
     }
   
-    if (!task.id || typeof task.isCompleted === "undefined" || !task.description) {
-      return res.status(400).json({ error: "La información de la tarea es inválida o faltan atributos." });
+    
+    if (!tarea.id || typeof tarea.isCompleted === "undefined" || !tarea.description) {
+      return res.status(400).json({ error: "Task information is invalid or missing attributes." });
     }
   
     next();
   }
   
   module.exports = {
-    valideTask,
+    validateTaskData,
   };
