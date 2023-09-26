@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const { validateTaskData } = require("./list-edit-middleware"); 
 
 const tasks = [
   {
@@ -14,7 +15,7 @@ const tasks = [
   },
 ];
 
-router.post("/create", (req, res) => {
+router.post("/create", validateTaskData, (req, res) => {
   const newTask = req.body;
   tasks.push(newTask);
   res.json(newTask);
@@ -31,7 +32,7 @@ router.delete("/delete/:id", (req, res) => {
   }
 });
 
-router.put("/update/:id", (req, res) => {
+router.put("/update/:id", validateTaskData, (req, res) => {
   const taskId = req.params.id;
   const updatedTaskData = req.body;
   const index = tasks.findIndex((task) => task.id === taskId);
